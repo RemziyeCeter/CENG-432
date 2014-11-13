@@ -1,18 +1,35 @@
 //Remziye Ceter
 //170201038
-//Immutable
-
-class IyteImmutableList(val h:Node){
-  var head: Node = h;
+//Mutable List
+class IyteMutableList {
+  var head: Data = null
+  var last: Data = null
   var size: Int = 0
+ def add (x: Int): Unit= {
+  if(head == null){
+    head = new Data(x,null)
+    last = head
+    
+    }
+  else{
+    var temp = new Data (x,null)
+    last.setAfter(temp)
+    last = temp
+    
+    }
+  }
+  def preappend (x: Int): Unit= {
   
-  def this(){
-    this(null);
+  if(head == null){
+    head = new Data (x,null)
+    last = head
+    }
+  else{
+    var new_head = new Data(x,null)
+    new_head.setAfter(head)
+    head = new_head
+    } 
   }
- def add (x: Int): IyteImmutableList= {
-    new IyteImmutableList(new Node(x,head));
-  }
-
   def toStringMethod(): Unit = {
     var instance = this.head
     while(instance!= null){
@@ -21,21 +38,20 @@ class IyteImmutableList(val h:Node){
     }
   }
 }
-
-class Node (left : Int , right : Node){
+class Data (left : Int , right : Data){
   var value = left 
   var nextData = right
   def getValue(): Int = {
     value
   }
-  def getNextData(): Node = {
+  def getNextData(): Data = {
     nextData
   }
-  def set ( x: Node): Unit = {
+  def set ( x: Data): Unit = {
     this.value = x.getValue()
     this.nextData = x.getNextData()
   }
-  def setAfter ( x: Node): Unit = {
+  def setAfter ( x: Data): Unit = {
     nextData = x  
   }
   def setValue ( x: Int): Unit = {
