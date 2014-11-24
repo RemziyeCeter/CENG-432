@@ -2,8 +2,10 @@ class IyteImmutableSet {
   var arraySize = 20
   var list = new Array[Int](0)
   var numberOfElement = 0
-  def add(i: Int): IyteImmutableSet = {
-    IyteImmutableSet(Array.concat(list, Array(i)));
+  
+  def add(element: Int): IyteImmutableSet = {
+  
+    IyteImmutableSet(Array.concat(list, Array(element)));
   }
   def contains(element: Int): Boolean = {
     var exist: Boolean = false
@@ -11,23 +13,16 @@ class IyteImmutableSet {
     var upperBound = numberOfElement - 1;
     var curIn = 0
 
-    while (lowerBound <= upperBound) {
+   while (lowerBound <= upperBound) {
+
       curIn = (upperBound + lowerBound) / 2;
-      if (lowerBound == curIn) {
-        if (list(curIn) > element) {
-          curIn;
-        }
-      }
-      if (list(curIn) < element) {
+
+      if (list(curIn) > element) {
+        upperBound = curIn - 1;
+      } else if (list(curIn) < element) {
         lowerBound = curIn + 1; // its in the upper
-        if (lowerBound > upperBound) {
-          curIn += 1;
-        }
-      } else if (lowerBound > upperBound) {
-        curIn;
-      } else {
-        upperBound = curIn - 1; // its in the lower
-      }
+      } else if (list(curIn) == element)
+        return true
     }
     return false
   }
