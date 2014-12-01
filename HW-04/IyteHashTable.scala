@@ -1,5 +1,5 @@
  class IyteHashTable() {
-  val size: Int = 1000
+  val size: Int = 1000000
   val table: Array[Array[(String)]] = new Array[Array[(String)]] (size)
   var numOfElements: Int = 0
 
